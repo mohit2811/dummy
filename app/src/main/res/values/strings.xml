@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="vertical_list">Vertical List</string>
+    <string name="horizontal_list">Horizontal List</string>
+    <string name="grid_list">Grid View with 2 colomns</string>
+    <string name="stagerred_list">Staggered View</string>
+</resources>
