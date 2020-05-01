@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_margin="10dp"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -9,6 +10,16 @@
         android:scaleType="centerCrop"
         android:id="@+id/image"
         android:src="@drawable/ic_launcher_foreground"
-        android:background="@drawable/ic_launcher_background"
-        android:layout_margin="10dp"/>
+android:background="@drawable/ic_launcher_background"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:id="@+id/text"
+        android:src="@drawable/ic_launcher_foreground"
+        android:textColor="#000000"
+        android:text="url"
+
+        />
 </LinearLayout>

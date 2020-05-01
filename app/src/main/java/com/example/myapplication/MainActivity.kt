@@ -62,7 +62,8 @@ class MainActivity : AppCompatActivity() {
         } else if (s.equals("Staggered View")) {
             label2.text = s + "- Swipe Up/Down"
             staggeredGridLayoutManager =
-                StaggeredGridLayoutManager(4, LinearLayoutManager.VERTICAL)
+                StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
+
             recycler_view_image.layoutManager = staggeredGridLayoutManager
         }
         var adapter = Adapter(this, data, zoomedImage, view_back)
