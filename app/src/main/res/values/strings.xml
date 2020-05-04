@@ -4,4 +4,13 @@
     <string name="horizontal_list">Horizontal List</string>
     <string name="grid_list">Grid View with 2 colomns</string>
     <string name="stagerred_list">Staggered View</string>
+    <array name="week_day_letters">
+        <item>M</item>
+        <item>T</item>
+        <item>W</item>
+        <item>T</item>
+        <item>F</item>
+        <item>S</item>
+        <item>S</item>
+    </array>
 </resources>

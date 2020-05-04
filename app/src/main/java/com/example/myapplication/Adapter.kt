@@ -2,20 +2,22 @@ package com.example.myapplication
 
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnLongClickListener
 import android.view.ViewGroup
+import android.view.Window
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide.with
-import org.w3c.dom.Text
 
 
 class Adapter(
@@ -50,12 +52,25 @@ holder.text.text=imageList.get(position)
             Toast.makeText(mContext, "Tap on Image to Zoom out", Toast.LENGTH_SHORT).show()
             false
         })
-        holder.image.setOnClickListener(
-            {
-                val i = Intent(mContext, MapsActivity::class.java)
-                mContext.startActivity(i)
-            }
-        )
+        holder.image.setOnClickListener {
+            AlertDialog.Builder(mContext)
+                .setTitle("Select next Activity")
+                .setMessage("Choose")
+
+                .setPositiveButton(
+                    "Maps",
+                    DialogInterface.OnClickListener { dialog, which ->
+                        val i = Intent(mContext, MapsActivity::class.java)
+                        mContext.startActivity(i)
+                    })
+                .setNegativeButton("Alarm",
+                    DialogInterface.OnClickListener { dialog, which ->
+                        val i = Intent(mContext, AlarmActivity::class.java)
+                        mContext.startActivity(i)
+                    })
+                .show()
+
+        }
     }
 
 

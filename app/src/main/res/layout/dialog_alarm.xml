@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/edit_alarm_scrollview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/edit_alarm_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/edit_alarm_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:textSize="@dimen/alarm_text_size"
+            tools:text="07:00"/>
+
+        <LinearLayout
+            android:id="@+id/edit_alarm_days_holder"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/alarm_day_size"
+            android:layout_below="@+id/edit_alarm_time"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal" />
+
+        <EditText
+            android:id="@+id/edit_alarm_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_alarm_days_holder"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+
+            android:hint="Title"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textCursorDrawable="@null"
+            android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="right"
+            android:layout_toLeftOf="@+id/button2"
+            android:layout_below="@id/edit_alarm_label"
+            android:layout_marginRight="20dp"
+            android:textColor="@color/colorPrimary"
+            android:background="@android:color/transparent" />
+
+        <TextView
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+android:layout_alignParentRight="true"
+android:layout_marginTop="20dp"
+            android:layout_below="@id/edit_alarm_label"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:text="Add"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"
+            android:background="@android:color/transparent" />
+    </RelativeLayout>
+</ScrollView>
