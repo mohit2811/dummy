@@ -1,10 +1,14 @@
 package com.example.myapplication
 
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -23,7 +27,8 @@ class MainActivity : AppCompatActivity() {
         addData()
         setAdapter("Vertical List")
         initListener()
-
+        if (!checkPermission())
+            requestPermission()
 
     }
 
@@ -82,6 +87,28 @@ class MainActivity : AppCompatActivity() {
         data.add("https://www.cisl.cam.ac.uk/news/images/business-for-nature.jpg")
         data.add("https://cdn.climatechangenews.com/files/2019/12/09161458/adventure-awesome-boardwalk-726298.jpg")
 
+    }
+
+    fun checkPermission(): Boolean {
+        val coarseLocPermissionResult = ContextCompat.checkSelfPermission(
+            applicationContext,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        )
+        val fineLocPermissionResult = ContextCompat.checkSelfPermission(
+            applicationContext,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        )
+
+        return fineLocPermissionResult == PackageManager.PERMISSION_GRANTED && coarseLocPermissionResult == PackageManager.PERMISSION_GRANTED
+    }
+
+    fun requestPermission() {
+        ActivityCompat.requestPermissions(
+            this, arrayOf(
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ), 102
+        )
     }
 
 }

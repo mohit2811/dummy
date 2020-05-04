@@ -44,18 +44,19 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
             return
         }
         val location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER)
-        new_lat = location.longitude
-        new_long = location.latitude
+        
+        new_lat =  location.latitude
+        new_long = location.longitude
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         val currentLocation = LatLng(new_lat, new_long)
         googleMap.addMarker(
             MarkerOptions().position(currentLocation)
-                .title("Marker number $new_lat $new_long")
+                .title("Marker number lat= $new_lat  long = $new_long")
                 .snippet((count + 1).toString())
         )
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation,15f))
         line.add(currentLocation)
         count++
         marknext!!.setOnClickListener { marknext(googleMap) }
@@ -72,15 +73,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
 // 1m in degree = 0.0089 / 1000 = 0.0000089
         val degree = meters * 0.0000089
         new_lat = new_lat + degree
-        val angle = Random().nextInt(360).toDouble()
-        val pi = Math.PI / angle
-        new_long = new_long + degree / Math.cos(new_lat * pi)
+        new_long = new_long + degree / Math.cos(new_lat * 0.018)
         googleMap.addMarker(
             MarkerOptions()
                 .position(LatLng(new_lat, new_long))
                 .title("Marker number lat= $new_lat  long = $new_long")
                 .snippet((count + 1).toString())
         )
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(new_lat, new_long),15f))
         Toast.makeText(this, "Marker number $count lat= $new_lat  long = $new_long", Toast.LENGTH_SHORT).show()
         line.add(LatLng(new_lat, new_long))
         count++
@@ -90,7 +90,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,
             polylineOptions.width(3F)
             polylineOptions.addAll(line)
             googleMap.addPolyline(polylineOptions)
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(new_lat, new_long)))
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(new_lat, new_long),12f))
         }
     }
 }
