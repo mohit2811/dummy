@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.Window
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +22,12 @@ import kotlinx.android.synthetic.main.activity_alarm.*
 class AlarmActivity : AppCompatActivity() {
     lateinit var dbHelper: DBHelper
     val DEFAULT_ALARM_MINUTES = 480
+    lateinit var edit_alarm_days_holder: LinearLayout
+    lateinit var button_cancel: TextView
+    lateinit var button_submit: TextView
+    lateinit var title: TextView
+    lateinit var edit_alarm_time: TextView
+
     val alarm = createNewAlarm(DEFAULT_ALARM_MINUTES, 0, this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,13 +69,13 @@ class AlarmActivity : AppCompatActivity() {
         mDialog.setCanceledOnTouchOutside(false)
         mDialog.setCancelable(false)
         mDialog.setContentView(R.layout.dialog_alarm)
-        CommonMethods.button_cancel = mDialog.findViewById(R.id.button)
-        CommonMethods.button_submit = mDialog.findViewById(R.id.button2)
-        CommonMethods.title = mDialog.findViewById<EditText>(R.id.edit_alarm_label)
-        CommonMethods.edit_alarm_time = mDialog.findViewById(R.id.edit_alarm_time)
-        CommonMethods.edit_alarm_days_holder = mDialog.findViewById(R.id.edit_alarm_days_holder)
+        button_cancel = mDialog.findViewById(R.id.button)
+        button_submit = mDialog.findViewById(R.id.button2)
+        title = mDialog.findViewById<EditText>(R.id.edit_alarm_label)
+        edit_alarm_time = mDialog.findViewById(R.id.edit_alarm_time)
+        edit_alarm_days_holder = mDialog.findViewById(R.id.edit_alarm_days_holder)
         updateAlarmTime()
-        CommonMethods.edit_alarm_time.setOnClickListener {
+        edit_alarm_time.setOnClickListener {
             TimePickerDialog(
                 this,
                 timeSetListener,
@@ -77,19 +84,20 @@ class AlarmActivity : AppCompatActivity() {
                 true
             ).show()
         }
-        CommonMethods.button_cancel.setOnClickListener {
+        button_cancel.setOnClickListener {
             mDialog.dismiss()
         }
-        CommonMethods.button_submit.setOnClickListener {
+        button_submit.setOnClickListener {
             if (alarm.days == 0) {
                 return@setOnClickListener
             }
 
-            alarm.label = CommonMethods.title.text.toString()
+            alarm.label = title.text.toString()
 
             if (alarm.id == 0) {
                 if (dbHelper.insertAlarm(alarm)) {
-
+var alarmLAst=dbHelper.getAlarmlast()
+                    CommonMethods.scheduleNextAlarm(alarmLAst,true,this)
                     startActivity(Intent(this, AlarmActivity::class.java))
                     finish()
                     mDialog.dismiss()
@@ -109,7 +117,7 @@ class AlarmActivity : AppCompatActivity() {
             val pow = Math.pow(2.0, it.toDouble()).toInt()
             val day = layoutInflater.inflate(
                 R.layout.alarm_day,
-                CommonMethods.edit_alarm_days_holder,
+                edit_alarm_days_holder,
                 false
             ) as TextView
             day.text = dayLetters[it]
@@ -128,7 +136,7 @@ class AlarmActivity : AppCompatActivity() {
                 day.background = CommonMethods.getProperDayDrawable(selectDay, this)
             }
 
-            CommonMethods.edit_alarm_days_holder.addView(day)
+            edit_alarm_days_holder.addView(day)
             mDialog.show()
 
         }
@@ -142,9 +150,8 @@ class AlarmActivity : AppCompatActivity() {
     }
 
     private fun updateAlarmTime() {
-        CommonMethods.edit_alarm_time.text =
+        edit_alarm_time.text =
             CommonMethods.getFormattedTime(alarm.timeInMinutes * 60, false, true)
     }
-
 
 }

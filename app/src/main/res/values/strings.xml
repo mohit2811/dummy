@@ -4,6 +4,11 @@
     <string name="horizontal_list">Horizontal List</string>
     <string name="grid_list">Grid View with 2 colomns</string>
     <string name="stagerred_list">Staggered View</string>
+    <string name="lambda_function">Lambda Function</string>
+    <string name="inline_function">inLine Function</string>
+    <string name="inflix_function">Inflix Function</string>
+    <string name="sealed_classes">Sealed Classes</string>
+    <string name="tail_recurssion">Tail Recurssion</string>
     <array name="week_day_letters">
         <item>M</item>
         <item>T</item>
@@ -13,4 +18,31 @@
         <item>S</item>
         <item>S</item>
     </array>
+
+    <array name="week_day">
+        <item>Mon</item>
+        <item>Tues</item>
+        <item>Wed</item>
+        <item>Thurs</item>
+        <item>Fri</item>
+        <item>Sat</item>
+        <item>Sun</item>
+    </array>
+
+    <plurals name="hours">
+        <item quantity="one">Hour</item>
+        <item quantity="other">Hours</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d minute</item>
+        <item quantity="other">%d minutes</item>
+    </plurals>
+    <plurals name="second">
+        <item quantity="one">%2$s: %1$d second</item>
+        <item quantity="other">%2$s: %1$d seconds</item>
+    </plurals>
+    <plurals name="day">
+        <item quantity="one">%3$s: %1$d Day</item>
+        <item quantity="other">%3$s: %1$d Days</item>
+    </plurals>
 </resources>

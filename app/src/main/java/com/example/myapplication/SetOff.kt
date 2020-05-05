@@ -11,26 +11,27 @@ import kotlin.properties.Delegates
 
 class SetOff : AppCompatActivity() {
 var idd:Int = 0
-    private var alarms = ArrayList<Alarm>()
+    private lateinit var alarms : Alarm
   var   dbHelper = DBHelper.newInstance(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_set_off)
-        title_off.text=intent.getStringExtra("title")
-        alarm_time_off.text="Time "+intent.getStringExtra("time")
-         idd =intent.getIntExtra("id",0)
-        alarms =dbHelper.getAlarms()
+        idd =intent.getIntExtra("id",0)
+        alarms = dbHelper.getAlarmWithId(idd)!!
+        title_off.text=alarms.label
+        alarm_time_off.text="Time "+ CommonMethods.getFormattedTime(
+            alarms.timeInMinutes * 60,
+            false,
+            true
+        ).toString()
+
 
     }
 
     fun setOffId(view: View) {
         if (dbHelper.updateAlarmEnabledState(idd, false)) {
-            val alarm = alarms.firstOrNull { it.id == idd } ?: return
-            alarm.isEnabled = false
             startActivity(Intent(this, AlarmActivity::class.java))
             finish()
-        } else {
-
         }
     }
 }

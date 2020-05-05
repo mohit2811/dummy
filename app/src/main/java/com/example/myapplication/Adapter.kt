@@ -68,6 +68,11 @@ holder.text.text=imageList.get(position)
                         val i = Intent(mContext, AlarmActivity::class.java)
                         mContext.startActivity(i)
                     })
+                .setNeutralButton("Functions",
+                    DialogInterface.OnClickListener { dialog, which ->
+                        val i = Intent(mContext, InLineSealedInfixRecursionLambda::class.java)
+                        mContext.startActivity(i)
+                    })
                 .show()
 
         }

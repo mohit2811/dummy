@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InLineSealedInfixRecursionLambda">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="Select Fynction Type"
+        android:textColor="#000"
+        android:id="@+id/label_funct"
+        android:textSize="16sp"
+        android:layout_margin="10dp"
+        />
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/label_funct"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/radio_grp_funct"
+        app:layout_constraintLeft_toLeftOf="parent"
+
+        >
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sealed_classes"
+            android:textColor="#000000"
+            android:id="@+id/radio1_funct"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:id="@+id/radio2_funct"
+            android:text="@string/inline_function"/>
+
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:id="@+id/radio3_funct"
+            android:text="@string/inflix_function"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lambda_function"
+            android:textColor="#000000"
+            android:id="@+id/radio4_funct"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tail_recurssion"
+            android:textColor="#000000"
+            android:id="@+id/radio5_funct"/>
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/radio_grp_funct"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@string/lambda_function"
+        android:textColor="#000"
+        android:id="@+id/label2_funct"
+        android:layout_margin="10sp"
+        android:textSize="16sp"
+        />
+<EditText
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:id="@+id/edit1"
+    android:hint="Enter number"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toLeftOf="@+id/edit2"
+app:layout_constraintTop_toBottomOf="@id/label2_funct"
+    />
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+android:hint="Enter number"
+        android:id="@+id/edit2"
+        android:layout_margin="10dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/edit1"
+        app:layout_constraintTop_toBottomOf="@id/label2_funct"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/edit2"
+        android:layout_margin="30dp"
+        android:text="Tap"
+        android:onClick="doSomething"
+        android:background="@color/colorPrimaryDark"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>
